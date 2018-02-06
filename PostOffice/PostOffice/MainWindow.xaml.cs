@@ -28,7 +28,12 @@ namespace PostOffice
 
         private void BtnAddPost_Click(object sender, RoutedEventArgs e)
         {
-            if (TbRecipiantName.Text.Trim() == "" && NumUdRecipianNumber.Number == 0) return;
+            if (TbRecipiantName.Text.Trim() == "" && NumUdRecipianNumber.Number == 0)
+            {
+                MessageBox.Show("Please enter a name and/or select a number higher than 0", "No recipiant info", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
             Recipiant newRecipiant = new Recipiant(TbRecipiantName.Text.Trim(), NumUdRecipianNumber.Number > 0 ? NumUdRecipianNumber.Number : (int?)null, null);
             throw new NotImplementedException("Implement AddPost");
             RefreshListBox();
@@ -36,7 +41,11 @@ namespace PostOffice
 
         private void BtnRemovePost_Click(object sender, RoutedEventArgs e)
         {
-            if (!(LbRecipiants.SelectedItem is Recipiant selectedRecipiant)) return;
+            if (!(LbRecipiants.SelectedItem is Recipiant selectedRecipiant))
+            {
+                MessageBox.Show("Please select a recipiant to remove", "No recipiant selected", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             throw new NotImplementedException("Implement RemovePost");
             RefreshListBox();
         }
