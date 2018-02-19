@@ -1,0 +1,1 @@
+NodeJS must have been installed for the mysql connection to work

@@ -1,0 +1,46 @@
+﻿@using Models
+@model Grid
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="mastclass">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <tbody>
+
+                        @{
+                            Grid grid = Model as Grid;
+                        }
+                        @if (grid != null)
+                        {
+                            for (int row = 1; row <= grid.Cells.Max(c => c.Position.Y); row++)
+                            {
+                                <tr>
+                                    @for (int x = 1; x <= grid.Cells.Max(c => c.Position.X); x++)
+                                    {
+                                        Cell cell = grid.Cells.Find(c => c.Position.X == x && c.Position.Y == row);
+                                        if (cell.Enabled)
+                                        {
+                                            <td class="success gridcell">
+                                                @Html.ActionLink(cell.Number.ToString(), "ClickCell", "Home", new { row, x }, new { @class = "gridlink" })
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="gridcell">
+                                                @Html.ActionLink(cell.Number.ToString(), "ClickCell", "Home", new { row, x }, new { @class = "gridlink" })
+                                            </td>
+                                        }
+                                    }
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
