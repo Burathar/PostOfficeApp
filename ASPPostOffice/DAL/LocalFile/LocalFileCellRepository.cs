@@ -7,6 +7,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 using Models;
 
 namespace DAL.LocalFile
@@ -17,8 +18,10 @@ namespace DAL.LocalFile
 
         public LocalFileCellRepository()
         {
-            string initialPath = Path.GetTempPath();
-            _filePath = Path.GetFullPath(Path.Combine(initialPath, @"PostOfficeGrid.txt"));
+            string initialPath = HostingEnvironment.MapPath(@"~/App_Data"); //Not available in Debugmode
+            //string initialPath = Directory.GetCurrentDirectory(); //Not available for hosting
+
+            _filePath = Path.GetFullPath(Path.Combine(initialPath, @"../PostOfficeGrid.txt"));
             if (!File.Exists(_filePath)) InitiateFile();
             if (File.ReadAllText(_filePath).Length < 10) InitiateFile();
         }
