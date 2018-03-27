@@ -1,9 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-/* Set padding to keep content from hitting the edges */
+﻿/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -41,12 +36,17 @@ div.mastclass {
 .gridlink {
     text-decoration: none;
     color: #ffffff;
+    font-size: 25px;
 }
 
-    .gridlink:hover {
-        text-decoration: none;
-        color: #a3a3a3;
-    }
+.gridlink:hover {
+    text-decoration: none;
+    color: #a3a3a3;
+}
+
+.table {
+    margin-top: 3%;
+}
 
 .table tbody tr > td.success {
     background-color: #0000a3 !important;

@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace DAL
+namespace DAL.MySql
 {
-    internal class CellContext
+    internal class MySqlCellContext
     {
         private readonly MySqlDatabase _database = new MySqlDatabase();
 

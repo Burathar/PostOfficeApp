@@ -4,13 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.LocalFile;
+using DAL.MySql;
 using Models;
 
 namespace ASPPostOffice.Controllers
 {
     public class HomeController : Controller
     {
-        private CellRepository _cellRepository = new CellRepository();
+        private readonly ICellRepository _cellRepository = new LocalFileCellRepository();
 
         public ActionResult Index()
         {

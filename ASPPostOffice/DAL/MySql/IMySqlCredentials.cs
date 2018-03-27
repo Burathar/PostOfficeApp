@@ -1,7 +1,7 @@
 ﻿using MySql.Data;
 using MySql.Data.MySqlClient;
 
-namespace DAL
+namespace DAL.MySql
 {
     internal interface IMySqlCredentials
     {

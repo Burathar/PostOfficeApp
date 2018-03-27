@@ -1,32 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Models;
 
-namespace DAL
+namespace DAL.MySql
 {
-    public class CellRepository
+    public class MySqlCellRepository : ICellRepository
     {
-        private readonly CellContext _cellContext = new CellContext();
+        private readonly MySqlCellContext _cellContext = new MySqlCellContext();
 
         public Grid GetGrid()
         {
-            Grid grid = new Grid(new Size(10, 20));
-            GetCells(grid);
+            Grid grid = new Grid(new Size(0, 0));
+            LoadGrid(grid);
 
             return grid;
         }
 
-        private int GetNumber(int x, int y, int width)
-        {
-            return (y - 1) * width + x;
-        }
-
-        private void GetCells(Grid grid)
+        private void LoadGrid(Grid grid)
         {
             DataTable table = _cellContext.GetCellsEnabled();
             List<Cell> cells = new List<Cell>();
@@ -36,12 +27,10 @@ namespace DAL
                     new Point(
                         row["XPosition"].Int32(),
                         row["YPosition"].Int32()),
-                    row["Enabled"].Bool(),
-                    GetNumber(row["XPosition"].Int32(), row["YPosition"].Int32(), grid.Size.Width)
-                    )
+                    row["Enabled"].Bool(), -1)
                 );
             }
-            grid.Cells = cells;
+            grid.SetCells(cells);
         }
 
         public void ToggleCell(int x, int y)

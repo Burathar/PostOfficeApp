@@ -4,9 +4,9 @@ namespace Models
 {
     public class Cell
     {
-        public Point Position;
-        public bool Enabled;
-        public int Number { get; private set; }
+        public Point Position { get; set; }
+        public bool Enabled { get; set; }
+        public int Number { get; set; }
 
         public Cell(Point position, bool enabled, int number)
         {
